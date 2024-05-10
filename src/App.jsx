@@ -8,12 +8,8 @@ import { ContentCard } from "./components/ContentCard";
 function App() {
   return (
     <>
-      <Header />
-      
+      <Header />   
       <ContentCard />
-     
-
-
       <Footer />
 
 
