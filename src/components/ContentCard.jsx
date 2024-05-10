@@ -49,10 +49,10 @@ const client = createClient({
          />
          </div>
          ) : (
-            <div className=" flex mx-7 flex-wrap  mt-6 ">
+            <div className=" flex justify-center mx-40 flex-wrap  mt-6 ">
          {entries.map((entry) => {
            return ( 
-            <Card className="mt-6 mr-5 w-96">
+            <Card className="mt-6 mr-5 w-96 ">
         <CardHeader
           shadow={false}
           floated={false}
@@ -71,14 +71,14 @@ const client = createClient({
           </Typography>
           <div class="bg-gray-100 p-4 rounded-lg">
           
-          <Typography color="gray" class="text-sm text-gray-800">
+          <Typography color="gray" className="text-sm w-70 max-h-40 max-w-56    text-nowrap   overflow-y-scroll md:indent-3  text-gray-800">
           {entry.fields.discriptionOfPlace}
           
           </Typography>
           </div>
-          <a href="#" className="inline-block">
+          <a href={entry.fields} className="inline-block">
             <Button variant="text" className="flex items-center gap-2">
-              Learn More
+              Read More
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
