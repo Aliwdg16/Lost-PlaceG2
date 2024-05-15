@@ -4,18 +4,11 @@ import {
   CardBody,
   Typography,
   Button,
-} from "@material-tailwind/react";
-import { createClient } from "contentful";
-import { useEffect, useState } from "react";
-import { SpinnerDiamond } from "spinners-react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-  useNavigate,
-  Link,
-} from "react-router-dom";
+} from '@material-tailwind/react';
+import { createClient } from 'contentful';
+import { useEffect, useState } from 'react';
+import { SpinnerDiamond } from 'spinners-react';
+import { Link } from 'react-router-dom';
 const client = createClient({
   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
@@ -40,54 +33,54 @@ export function ContentCard() {
   }, []);
 
   return isLoading ? (
-    <div className="flex mt-11 justify-center items-center">
+    <div className='flex mt-11 justify-center items-center'>
       <SpinnerDiamond
         size={50}
         thickness={100}
         speed={100}
-        color="#36ad47"
-        secondaryColor="rgba(0, 0, 0, 0.44)"
+        color='#36ad47'
+        secondaryColor='rgba(0, 0, 0, 0.44)'
       />
     </div>
   ) : (
-    <div className=" flex justify-center rounded-xl mx-10 flex-wrap  mt-6 ">
+    <div className=' flex justify-center rounded-xl mx-10 flex-wrap  mt-6 '>
       {entries.map((entry) => {
         return (
           <Card
             key={entry.sys.id}
-            className="mt-6 mr-5 w-80 h-auto min-h-fit hover:shadow-2xl  hover:scale-105  hover:list-outside transition-all transform duration-500"
+            className='mt-6 mr-5 w-80 h-auto min-h-fit hover:shadow-2xl  hover:scale-105  hover:list-outside transition-all transform duration-500'
           >
             <CardHeader
               shadow={false}
               floated={false}
-              color="blue-gray"
-              className="relative h-56"
+              color='blue-gray'
+              className='relative h-56'
             >
               <img
                 src={entry.fields.pictureOfPlace.fields.file.url}
                 alt={entry.fields.pictureOfPlace.fields.title}
-                className="h-full w-full border-transparent rounded-md border-10 object-cover  hover:shadow-2xl  "
+                className='h-full w-full border-transparent rounded-md border-10 object-cover  hover:shadow-2xl  '
               />
             </CardHeader>
             <CardBody>
-              <Typography variant="h4" color="blue-gray" className="mb-2">
+              <Typography variant='h4' color='blue-gray' className='mb-2'>
                 {entry.fields.titleOfPlace}
               </Typography>
-              <div class="bg-gray-100 p-4 rounded-lg">
+              <div className='bg-gray-100 p-4 rounded-lg'>
                 <Typography
-                  color="gray"
-                  className="text-sm w-70 max-h-40 max-w-56  text-ellipsis  overflow-auto  md:indent-3  text-gray-800"
+                  color='gray'
+                  className='text-sm w-70 max-h-40 max-w-56  text-ellipsis  overflow-auto  md:indent-3  text-gray-800'
                 >
                   {entry.fields.discriptionOfPlace}
                 </Typography>
               </div>
-              <Router>
-                <NavLink to={'/singleblog'} className="flex items-center gap-2">
-                  <button className=" mt-5 inline-block rounded-full border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-black-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
-                    Read More
-                  </button>
-                </NavLink>
-              </Router>
+
+              <Link
+                to={`/places/${entry.sys.id}`}
+                className='flex items-center gap-2'
+              >
+                <button className='mt-5 ...'>Read More</button>
+              </Link>
             </CardBody>
           </Card>
         );
