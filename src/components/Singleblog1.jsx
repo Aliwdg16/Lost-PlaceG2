@@ -62,7 +62,7 @@ const Singleblogone = () => {
   ] : [];
 
   return (
-    <div className=" flex flex-wrap justify-center">
+    <div className=" flex flex-wrap items-center  flex-col   justify-center ">
 
       <div className="flex justify-center mt-8">
         {active && (
@@ -74,7 +74,7 @@ const Singleblogone = () => {
         )}
       </div>
 
-      <div className="flex flex-row justify-center mt-10">
+      <div className="flex flex-row justify-center max-w mt-10">
         {data.map(({ imgelink }, index) => (
           <div key={index}>
             {imgelink && (
