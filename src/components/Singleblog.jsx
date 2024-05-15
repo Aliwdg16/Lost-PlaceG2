@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { createClient } from 'contentful';
 import { SpinnerDiamond } from 'spinners-react';
@@ -43,16 +43,8 @@ function Singleblog() {
   }
 
   return (
-    <div className='container mx-auto mt-10 p-5'>
-      <h1 className='text-3xl font-bold mb-2'>{post?.titleOfPlace}</h1>
-      <img
-        src={post?.pictureOfPlace.fields.file.url}
-        alt={post?.titleOfPlace}
-        className='w-full h-auto'
-      />
-      <p className='mt-4'>{post?.discriptionOfPlace}</p>
-    </div>
-  );
+    <div>Singleblog</div>
+  )
 }
 
 export default Singleblog;
