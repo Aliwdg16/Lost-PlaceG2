@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { createClient } from 'contentful';
 import { SpinnerDiamond } from 'spinners-react';
 
@@ -12,7 +12,7 @@ function Singleblog() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [active, setActive] = useState(`${post?.foto1.fields.file.url}`);
   useEffect(() => {
     setIsLoading(true);
     client
@@ -46,11 +46,17 @@ function Singleblog() {
     <div className='container mx-auto mt-10 p-5'>
       <h1 className='text-3xl font-bold mb-2'>{post?.titleOfPlace}</h1>
       <img
-        src={post?.pictureOfPlace.fields.file.url}
+         src={post?.foto1.fields.file.url}
         alt={post?.titleOfPlace}
         className='w-full h-auto'
       />
-      <p className='mt-4'>{post?.discriptionOfPlace}</p>
+      <p className='mt-4'>{post?.singleblog}</p>
+      <Link
+                to={`/`}
+                className='flex justify-center my-5  items-center gap-2'
+              >
+                <button className='mt-5'>HOME</button>
+              </Link>
     </div>
   );
 }

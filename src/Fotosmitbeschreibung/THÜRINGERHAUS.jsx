@@ -1,37 +1,77 @@
 import { Button } from "@material-tailwind/react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ContentCard } from "../components/ContentCard";
+import { useParams } from 'react-router-dom';
+import { createClient } from 'contentful';
+import { SpinnerDiamond } from 'spinners-react';
+
+const client = createClient({
+  space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
+  accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
+});
 
 const THÜRINGERHAUS = () => {
+
+  const { id } = useParams();
+  const [post, setPost] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+
+
+  useEffect(() => {
+    setIsLoading(true);
+    client
+      .getEntry(id)
+      .then((entry) => {
+        setPost(entry.fields);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching post', error);
+        setIsLoading(false);
+      });
+  }, [id]);
+
+  if (isLoading) {
+    return (
+      <div className='flex justify-center items-center mt-11'>
+        <SpinnerDiamond
+          size={50}
+          thickness={100}
+          speed={100}
+          color='#36ad47'
+          secondaryColor='rgba(0, 0, 0, 0.44)'
+        />
+        <div className='text-lg font-medium text-gray-500 ml-4'>Loading...</div>
+      </div>
+    );
+  }
+
+
+
   const data = [
     {
       imgelink:
-        "https://coola.irrgang.eu/wp-content/gallery/thueringer-haus/Thueringer-Haus-6-von-6.jpg",
+      `${post?.foto2.fields.file.url}`,
     },
     {
       imgelink:
-        "https://coola.irrgang.eu/wp-content/gallery/thueringer-haus/Thueringer-Haus-2-von-6.jpg",
+      `${post?.foto3.fields.file.url}`,
     },
     {
       imgelink:
-        "https://coola.irrgang.eu/wp-content/gallery/thueringer-haus/Thueringer-Haus-3-von-6.jpg",
+      `${post?.foto4.fields.file.url}`,
     },
     {
       imgelink:
-        "https://coola.irrgang.eu/wp-content/gallery/thueringer-haus/Thueringer-Haus-4-von-6.jpg",
-    },
-    {
-      imgelink:
-        "https://coola.irrgang.eu/wp-content/gallery/thueringer-haus/Thueringer-Haus-1-von-6.jpg",
+      `${post?.foto5.fields.file.url}`,
     },
   ];
 
   const [active, setActive] = useState(
-    "https://coola.irrgang.eu/wp-content/gallery/thueringer-haus/Thueringer-Haus-5-von-6.jpg"
+    `${post?.foto1.fields.file.url}`
   );
 
-
+// post?.foto1.fields.file.url
   return (
    
     <div className="grid gap-4  ">
@@ -56,12 +96,7 @@ const THÜRINGERHAUS = () => {
       </div>
       <div className=" mt-8 w-full  bg-neutral-300  md:indent-3  text-gray-800">
         <p className="text-sm text-wrap text-left text-ellipsis m-10 mx-72 ">
-        Im Jahre 1813 wurde die Gaststätte “Schilling” (heute “Thüringer Haus”) erbaut. 
-          Schilling war der Name des Erbauers. Das Haus diente zeitweise als
-          Chausseegeldhaus. Denn nachdem die Chausseen gebaut worden waren,
-          wurden auf durchfahrende Geschirre und getriebenes Vieh Wegegeld
-          erhoben. Leider wird sie seit Jahren nicht mehr genutzt und ist dem
-          Verfall preisgegeben. Quelle: www.truegleben.de
+      {post?.fields.singleblog}
         </p>
       </div>
       {/* homepage */}
