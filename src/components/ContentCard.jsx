@@ -46,6 +46,7 @@ export function ContentCard() {
     <div className=' flex justify-center rounded-xl mx-10 flex-wrap  mt-6 '>
       {entries.map((entry) => {
         return (
+          <Link to={`/places/${entry.sys.id}`}>
           <Card
             key={entry.sys.id}
             className='mt-6 mr-5 w-80 h-auto min-h-fit hover:shadow-2xl overflow-auto hover:scale-105  hover:list-outside transition-all transform duration-500'
@@ -75,16 +76,18 @@ export function ContentCard() {
                 </Typography>
               </div>
 
-              <Link
-                to={`/places/${entry.sys.id}`}
-                className='flex justify-center my-5  items-center gap-2'
-              >
-                <button className='inline-block rounded-full border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10'>Read More {'>>'} </button>
-              </Link>
+            
+              
             </CardBody>
           </Card>
+           </Link>
         );
       })}
     </div>
   );
 }
+
+//   className='flex justify-center my-5  items-center gap-2'
+
+  //   <butto className='inline-block rounded-full border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10'>Read More {'>>'} </butto> 
+              

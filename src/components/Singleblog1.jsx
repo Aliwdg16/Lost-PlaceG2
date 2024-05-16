@@ -48,6 +48,9 @@ const Singleblogone = () => {
   
   const data = post ? [
     {
+      imgelink: post?.foto1.fields.file.url,
+    },
+    {
       imgelink: post?.foto2.fields.file.url,
     },
     {
@@ -64,6 +67,9 @@ const Singleblogone = () => {
   return (
     <div className=" flex flex-wrap items-center  flex-col   justify-center ">
 
+<div  variant='h4' color='blue-gray' className=' bg-[#064e3b] m-3 rounded-xl p-3 font-bold text-3xl  text-[#cbc87a] flex justify-center h-20 items-center mb-2 text-center'>
+                {post?.titleOfPlace}
+        </div>
       <div className="flex justify-center mt-8">
         {active && (
           <img
@@ -90,13 +96,13 @@ const Singleblogone = () => {
       </div>
 
 
-      <div className="mt-8 w-full bg-neutral-300  text-gray-800">
-        <p className="text-l text-wrap text-left text-ellipsis  mb-10 mt-10 mx-20">
+      <div className="mt-8 w-full flex justify-center flex-col items-center bg-neutral-300  text-gray-800">
+        <p className="text-xl  overflow-visible text-wrap text-left text-ellipsis w-[65rem] max-w-[150rem] mb-10 mt-10 mx-20">
           {post?.singleblog}
         </p>
         <Link
                 to={`/`}
-                className='flex justify-center my-5  items-center gap-2'
+                className='flex flex-wrap justify-center my-5  items-center'
               >
                 <button className='inline-block rounded-full border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 '>HOME</button>
               </Link>
