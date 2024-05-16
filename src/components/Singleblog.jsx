@@ -1,5 +1,5 @@
-import  { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { createClient } from 'contentful';
 import { SpinnerDiamond } from 'spinners-react';
 
@@ -12,7 +12,7 @@ function Singleblog() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [active, setActive] = useState(`${post?.foto1.fields.file.url}`);
   useEffect(() => {
     setIsLoading(true);
     client
@@ -43,26 +43,20 @@ function Singleblog() {
   }
 
   return (
-    <div className='container mx-auto mt-10 p-5 flex flex-col justify-center items-center'>
-    
-      <div className='flex flex-row justify-center items-center'>
-        <div className='flex flex-col justify-around items-center p-4'>
+    <div className='container mx-auto mt-10 p-5'>
       <h1 className='text-3xl font-bold mb-2'>{post?.titleOfPlace}</h1>
-        <img
-          src={post?.pictureOfPlace.fields.file.url}
-          alt={post?.titleOfPlace}
-          className='max-h-xl max-w-xl m-4 p-4'
-        /></div>
-        <p className='m-4 p-4 border border-black'>{post?.singleblog}</p>
-      </div>
-        
-      <div className='flex flex-wrap '>
-        <img  src={post?.foto1.fields.file.url} alt='pictureOfPlace' className='w-80 h-80 border rounded border-black m-4'/>
-        <img src={post?.foto2.fields.file.url} alt='pictureOfPlace' className='w-80 h-80 border rounded border-black m-4'/>
-        <img src={post?.foto3.fields.file.url} alt='pictureOfPlace' className='w-80 h-80 border rounded border-black m-4'/>
-        <img src={post?.foto4.fields.file.url} alt='pictureOfPlace' className='w-80 h-80 border rounded border-black m-4'/>
-        <img src={post?.foto1.fields.file.url} alt='pictureOfPlace' className='w-80 h-80 border rounded border-black m-4'/>  
-      </div>
+      <img
+         src={post?.foto1.fields.file.url}
+        alt={post?.titleOfPlace}
+        className='w-full h-auto'
+      />
+      <p className='mt-4'>{post?.singleblog}</p>
+      <Link
+                to={`/`}
+                className='flex justify-center my-5  items-center gap-2'
+              >
+                <button className='mt-5'>HOME</button>
+              </Link>
     </div>
   );
 }
