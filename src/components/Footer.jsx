@@ -3,9 +3,9 @@ import React from "react";
 export default function Footer() {
   return (
     //"bg-neutral-300 p-4 text-center text-neutral-700 dark:bg-neutral-700 dark:text-neutral-200"
-    <footer className="bg-emerald-900 text-center text-white dark:bg-neutral-600 hover:cursor-pointer">
-      <div className=" mt-9 pt-9 ">
-        <div className="mb-9 flex justify-center">
+    <footer className="bg-emerald-900 text-center text-white dark:bg-neutral-600 hover:cursor-pointer ">
+      <div className=" mt-5 pt-5 ">
+        <div className="mb-3 mt0 flex justify-center">
           <a className="mr-9 text-amber-100 hover:text-neutral-600 dark:text-neutral-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +74,7 @@ export default function Footer() {
       </div>
 
       {/* <!--Copyright section--> */}
-      <div className="bg-emerald-900 p-2 text-sm text-center text-neutral-400 dark:bg-neutral-700 dark:text-neutral-200">
+      <div className="bg-emerald-900 p-2 mt-0 text-sm text-center text-neutral-400 dark:bg-neutral-700 dark:text-neutral-200">
         Copyright © 2024
         <a
           className="text-amber-100 p-2 text-xl dark:text-neutral-400 font-serif"
