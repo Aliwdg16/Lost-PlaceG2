@@ -9,6 +9,8 @@ import { createClient } from "contentful";
 import { useEffect, useState } from "react";
 import { SpinnerDiamond } from "spinners-react";
 import { Link } from "react-router-dom";
+import { useSearch } from "../context/SearchContext";
+
 const client = createClient({
   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
@@ -17,6 +19,8 @@ const client = createClient({
 export function ContentCard() {
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { searchTerm } = useSearch();
+
   useEffect(() => {
     setIsLoading(true);
     client
@@ -32,6 +36,10 @@ export function ContentCard() {
       });
   }, []);
 
+  const filteredEntries = entries.filter((entry) =>
+    entry.fields.titleOfPlace.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return isLoading ? (
     <div className="flex mt-11 justify-center items-center">
       <SpinnerDiamond
@@ -44,7 +52,7 @@ export function ContentCard() {
     </div>
   ) : (
     <div className=" flex justify-center rounded-xl mx-10 flex-wrap  mt-6 ">
-      {entries.map((entry) => {
+      {filteredEntries.map((entry) => {
         return (
           <Link to={`/places/${entry.sys.id}`}>
             <Card
