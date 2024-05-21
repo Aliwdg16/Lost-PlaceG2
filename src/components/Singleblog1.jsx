@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from 'react-router-dom';
-import { createClient } from 'contentful';
-import { SpinnerDiamond } from 'spinners-react';
+import { Link, useParams } from "react-router-dom";
+import { createClient } from "contentful";
+import { SpinnerDiamond } from "spinners-react";
 
 const client = createClient({
   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
@@ -12,7 +12,7 @@ const Singleblogone = () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [active, setActive] = useState(null); 
+  const [active, setActive] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -20,56 +20,59 @@ const Singleblogone = () => {
       .getEntry(id)
       .then((entry) => {
         setPost(entry.fields);
-        setActive(entry.fields.foto1.fields.file.url); 
+        setActive(entry.fields.foto1.fields.file.url);
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching post', error);
+        console.error("Error fetching post", error);
         setIsLoading(false);
       });
   }, [id]);
 
   if (isLoading) {
-
     return (
-      <div className='flex justify-center items-center mt-11'>
+      <div className="flex justify-center items-center mt-11">
         <SpinnerDiamond
           size={50}
           thickness={100}
           speed={100}
-          color='#36ad47'
-          secondaryColor='rgba(0, 0, 0, 0.44)'
+          color="#36ad47"
+          secondaryColor="rgba(0, 0, 0, 0.44)"
         />
-        <div className='text-lg font-medium text-gray-500 ml-4'>Loading...</div>
+        <div className="text-lg font-medium text-gray-500 ml-4">Loading...</div>
       </div>
     );
   }
 
-  
-  const data = post ? [
-    {
-      imgelink: post?.foto1.fields.file.url,
-    },
-    {
-      imgelink: post?.foto2.fields.file.url,
-    },
-    {
-      imgelink: post?.foto3.fields.file.url,
-    },
-    {
-      imgelink: post?.foto4.fields.file.url,
-    },
-    {
-      imgelink: post?.foto5.fields.file.url,
-    },
-  ] : [];
+  const data = post
+    ? [
+        {
+          imgelink: post?.foto1.fields.file.url,
+        },
+        {
+          imgelink: post?.foto2.fields.file.url,
+        },
+        {
+          imgelink: post?.foto3.fields.file.url,
+        },
+        {
+          imgelink: post?.foto4.fields.file.url,
+        },
+        {
+          imgelink: post?.foto5.fields.file.url,
+        },
+      ]
+    : [];
 
   return (
     <div className=" flex flex-wrap items-center  flex-col   justify-center ">
-
-<div  variant='h4' color='blue-gray' className=' bg-[#064e3b] m-3 rounded-xl p-3 font-bold text-3xl  text-[#cbc87a] flex justify-center h-20 items-center mb-2 text-center'>
-                {post?.titleOfPlace}
-        </div>
+      <div
+        variant="h4"
+        color="blue-gray"
+        className=" bg-zinc-800 opacity-80 m-16 rounded-xl p-3 font-bold font-serif text-xl  text-[#cbc87a] flex justify-center h-10 items-center mb-4 text-center"
+      >
+        {post?.titleOfPlace}
+      </div>
       <div className="flex justify-center mt-8">
         {active && (
           <img
@@ -95,19 +98,19 @@ const Singleblogone = () => {
         ))}
       </div>
 
-
-      <div className="mt-8 w-full flex justify-center flex-col items-center bg-neutral-300  text-gray-800">
-        <p className="text-xl  overflow-visible text-wrap text-left text-ellipsis w-[65rem] max-w-[150rem] mb-10 mt-10 mx-20">
+      <div className="mt-8 w-full flex justify-center flex-col items-center bg-zinc-800  text-amber-100 font-serif">
+        <p className="text-ll  overflow-visible text-wrap text-left text-ellipsis w-[65rem] max-w-[150rem] mb-10 mt-10 mx-20">
           {post?.singleblog}
         </p>
         <Link
-                to={`/`}
-                className='flex flex-wrap justify-center my-5  items-center'
-              >
-                <button className='inline-block rounded-full border-2 border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 '>HOME</button>
-              </Link>
+          to={`/`}
+          className="flex flex-wrap justify-center my-5  items-center"
+        >
+          <button className="inline-block rounded-full border-2 border-amber-100 px-6 pb-[6px] pt-2 text-xs font-serif font-medium uppercase leading-normal text-amber-200/90 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10 ">
+            HOME
+          </button>
+        </Link>
       </div>
-
     </div>
   );
 };
