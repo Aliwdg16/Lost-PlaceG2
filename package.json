@@ -4,13 +4,14 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "vite",
+    "build": "vite build",
+    "dev": "vite",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "start": "nodemon server.js",
     "ali": "nodemon server.js",
-    "dev1": "nodemon --require dotenv/config server.js",
-    "dev": "vite"
+    "dev1": "nodemon --require dotenv/config server.js"
+    
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
