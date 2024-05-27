@@ -1,4 +1,4 @@
-const lostPlacesdata = {
+const lostPlacesdata ={
 	"sys": {
 		"type": "Array"
 	},
