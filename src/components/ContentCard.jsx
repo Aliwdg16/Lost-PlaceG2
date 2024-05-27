@@ -22,9 +22,9 @@ export function ContentCard() {
   const { searchTerm } = useSearch();
 
   useEffect(() => {
-    setIsLoading(true);
+     setIsLoading(true);
     client
-      .getEntries()
+      .getEntries()   
       .then((response) => {
         console.log(response.items);
         setEntries(response.items);

@@ -15,15 +15,16 @@ app.get('/lostplacesjson', async (req, res) => {
   }
 });
 
-app.get('/data',(req,res)=> res.send('hallo ali'))
+ app.get('/data',(req,res)=> res.send('Lost place'))
 
-app.post('/neuekarte',(req,res)=>{
+// app.post('/neuekarte',(req,res)=>{
 
-    const neuekarte={
+//     const neuekarte={
         
-    }
-})
+//     }
+// })
 // Start the server
+
 app.listen(PORT, () => 
  { console.log(`Server is running on http://localhost:${PORT}`);}
 );
